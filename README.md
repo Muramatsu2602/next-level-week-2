@@ -1,3 +1,2 @@
 # Next Level Week 2
-Web development bootcamp offered by Rocketseat
-
+Web development bootcamp offered by Rocketseat.
