@@ -1,0 +1,23 @@
+ /* 
+    CSS: cascading style sheet
+
+    Strength in CSS:
+    - Biggest cascade --> stronger
+    - ID selector > Class Selector > elements
+*/
+
+/* Class */
+.red {
+    color: red;
+}
+
+/* Id --> doesnt repeat! */
+#page-landing {
+    background-color: linen;
+    color: darkslateblue;
+
+}
+
+body{
+    background-color: #8257e5;
+}
