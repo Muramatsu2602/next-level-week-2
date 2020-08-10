@@ -1,25 +1,49 @@
-const proffys = [{
+const proffys = [
+    {
         name: "Kenzo Muramatsu",
         avatar: "https://avatars2.githubusercontent.com/u/37938401?s=460&u=5c8989e9f1dda849b803d5313998a343b19bbf11&v=4",
         whatsapp: "14997865433",
-        bio: "<p>Entusiasta das melhores tecnologias de química avançada.<br><br>Apaixonado por explodir coisas em laboratório e por mudar a vida das pessoas através de experiências.Mais de 200.000 pessoas já passaram por uma das minhas explosões. < /p>",
-        subject: "Quimica",
+        bio: "Entusiasta das melhores tecnologias de química avançada.Apaixonado por explodir coisas em laboratório e por mudar a vida das pessoas através de experiências.Mais de 200.000 pessoas já passaram por uma das minhas explosões.",
+        subject: "Quimica", 
         cost: "20",
         weekday: [0],
         time_from: [720],
         time_to: [1220]
     },
     {
-        name: "Shinzo Abe",
-        avatar: "https://www.kantei.go.jp/jp/content/20150101souri_2.jpg",
-        whatsapp: "1499782222",
+        name: "Vahan Agopyan",
+        avatar: "https://ugpn.org/wp-content/uploads/2019/09/Professor_Vahan_Agopyan_headshot_USP.jpg",
+        whatsapp: "189973366722",
         bio: " Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error unde doloribus aut nam sit necessitatibus incidunt, labore autem. Ipsa nobis quia illo tenetur in nam ducimus deserunt saepe minus quae.",
-        subject: "Historia",
-        cost: "9999",
+        subject: "Matematica",
+        cost: "200",
         weekday: [1],
         time_from: [1500],
         time_to: [1750]
-    }
+    },
+]
+
+const subjects = [
+    "Artes",
+    "Biologia",
+    "Ciencias",
+    "Educacao Fisica",
+    "Fisica",
+    "Geografia",
+    "Historia",
+    "Matematica",
+    "Portugues",
+    "Quimica",
+]
+
+const weekdays = [
+    "Domingo",
+    "Segunda-feira",
+    "Terca-feira",
+    "Quarta-feira",
+    "Quinta-feira",
+    "Sexta-feira",
+    "Sabado",
 ]
 
 function pageLanding(req, res) {
@@ -27,11 +51,12 @@ function pageLanding(req, res) {
 }
 
 function pageStudy(req, res) {
-    return res.render("study.html", { proffys })
+    const filters = req.query
+    return res.render("study.html", { proffys,filters, subjects, weekdays})
 }
 
 function pageGiveClasses(req, res) {
-    return res.render(__dirname + "give-classes.html")
+    return res.render("give-classes.html")
 }
 
 const express = require('express')
