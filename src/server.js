@@ -56,7 +56,10 @@ function pageStudy(req, res) {
 }
 
 function pageGiveClasses(req, res) {
-    return res.render("give-classes.html")
+    const dados = req.query
+    // adicionar dados a  lista de proffys
+
+    return res.render("give-classes.html", {subjects, weekdays})
 }
 
 const express = require('express')
@@ -75,7 +78,7 @@ server
     .use(express.static("public"))
     // rotas da aplicacao
     .get("/", pageLanding)
-    .get("/study", pageStudy)
     .get("/give-classes", pageGiveClasses)
+    .get("/study", pageStudy)
 
     .listen(5500)
