@@ -71,6 +71,7 @@ function pageGiveClasses(req, res) {
     })
 }
 
+// FIXME: infinite loading when submiting form... has to do with async proly
 async function saveClasses(req, res) {
     const createProffy = require('./database/createProffy')
 
