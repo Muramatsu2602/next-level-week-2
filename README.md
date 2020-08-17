@@ -20,9 +20,9 @@ This bootcamp will be focused on the creation of an online teaching platform cal
 ## Running this Project
 In order to run this project locally using Nodemon, use this command
 ```bash
-    npm run dev
+npm run dev
 ```
 For testing the database using some fake data, try this
 ```bash
-    node src/database/test.js
+node src/database/test.js
 ```
