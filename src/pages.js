@@ -11,7 +11,7 @@ function pageLanding(req, res) {
     return res.render("index.html")
 }
 
-function pageStudy(req, res) {
+async function pageStudy(req, res) {
     const filters = req.body
 
     if (!filters.subject || !filters.weekday || !filters.time) {
@@ -32,7 +32,7 @@ function pageStudy(req, res) {
         WHERE EXISTS(
             SELECT class_schedule.*
             FROM class_schedule
-           WHERE class_schedule.class_id = classes.id
+            WHERE class_schedule.class_id = classes.id
             AND class_schedule.weekday = ${filters.weekday}
             AND class_schedule.time_from <= ${timeToMinutes}
             AND class_schedule.time_to > ${timeToMinutes}
@@ -41,12 +41,10 @@ function pageStudy(req, res) {
     `
     // caso haja erro na consulta do banco de dados
     try {
-        (async function () {
-            const db = await Database
-            const proffys = await db.all(query)
-        })();
+        const db = await Database
+        const proffys = await db.all(query)
 
-
+        // troca numero da materia pelo nome correspondente
         proffys.map((proffy) => {
             proffy.subject = getSubject(proffy.subject)
         })
@@ -71,11 +69,11 @@ function pageGiveClasses(req, res) {
     })
 }
 
-// FIXME: infinite loading when submiting form... has to do with async proly
 async function saveClasses(req, res) {
     const createProffy = require('./database/createProffy')
+    // const data = req.body
 
-    proffyValue = {
+    const proffyValue = {
         name: req.body.name,
         avatar: req.body.avatar,
         whatsapp: req.body.whatsapp,
@@ -87,13 +85,22 @@ async function saveClasses(req, res) {
         cost: req.body.cost
     }
 
-    const classScheduleValues = req.body.weekday.map((weekday, index) => {
-        return {
-            weekday,
-            time_from: convertHoursToMinutes(req.body.time_from[index]),
-            time_to: convertHoursToMinutes(req.body.time_to[index])
-        }
-    })
+    console.log("HEY fren: ")
+    console.log(req.body.weekday) // :
+
+    // FIXME: nodemon says problem is here.. --> apparently this doesnt come as an array
+    try {
+        const classScheduleValues = req.body.weekday.map((weekday, index) => {
+            return {
+                weekday,
+                time_from: convertHoursToMinutes(req.body.time_from[index]),
+                time_to: convertHoursToMinutes(req.body.time_to[index])
+            }
+        })
+    } catch (error) {
+        console.log(error)
+    }
+   
 
     try {
         const db = await Database

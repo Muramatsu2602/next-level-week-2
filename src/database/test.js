@@ -31,12 +31,6 @@ Database.then(async (db) => {
         }
     ]
 
-    // await createProffy(db, {
-    //     proffyValue,
-    //     classValue,
-    //     classScheduleValues
-    // })
-
     // Consultar os dados inseridos
 
     // todos os proffys
@@ -57,7 +51,7 @@ Database.then(async (db) => {
     // o horario do time_from (8h) precisa ser antes ou igual ao horario selecionado
     // o time_to precisa ser acima
     
-    const selectClassesSchedule = await.db.all(`
+    const selectClassesSchedules = await db.all(`
         SELECT class_schedule.*
         FROM class_schedule
         WHERE class_schedule.class_id = 1
@@ -65,5 +59,7 @@ Database.then(async (db) => {
         AND class_schedule.time_from <= "1300"
         AND class_schedule.time_to > "1300"
     `)
+
+    // console.log(selectClassesSchedules)
 
 })

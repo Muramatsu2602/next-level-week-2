@@ -20,7 +20,7 @@ module.exports = async function (db, {
 
     const proffy_id = insertedProffy.lastID
 
-    // inserrir dados na tabela classes
+    // inserir dados na tabela classes
 
     const insertedClass = await db.run(`
             INSERT INTO classes (
