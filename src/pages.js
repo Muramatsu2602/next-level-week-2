@@ -87,7 +87,10 @@ async function saveClasses(req, res) {
     console.log("HEY BOSS: ")
     console.log(req.body.weekday) // :
 
-    // FIXME: nodemon says problem is here.. --> apparently this doesnt come as an array
+    /* nodemon says problem is here.. --> apparently this doesnt come as an array
+       SOLUTION: for this to work, always input 2 or more dates, so it is an array 
+       PS: dont try catch a const otherwise it wont be defined outside it!
+    */
     const classScheduleValues = req.body.weekday.map((weekday, index) => {
         return {
             weekday,
