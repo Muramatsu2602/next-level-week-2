@@ -71,7 +71,6 @@ function pageGiveClasses(req, res) {
 
 async function saveClasses(req, res) {
     const createProffy = require('./database/createProffy')
-    // const data = req.body
 
     const proffyValue = {
         name: req.body.name,
@@ -85,21 +84,17 @@ async function saveClasses(req, res) {
         cost: req.body.cost
     }
 
-    console.log("HEY fren: ")
+    console.log("HEY BOSS: ")
     console.log(req.body.weekday) // :
 
     // FIXME: nodemon says problem is here.. --> apparently this doesnt come as an array
-    try {
-        const classScheduleValues = req.body.weekday.map((weekday, index) => {
-            return {
-                weekday,
-                time_from: convertHoursToMinutes(req.body.time_from[index]),
-                time_to: convertHoursToMinutes(req.body.time_to[index])
-            }
-        })
-    } catch (error) {
-        console.log(error)
-    }
+    const classScheduleValues = req.body.weekday.map((weekday, index) => {
+        return {
+            weekday,
+            time_from: convertHoursToMinutes(req.body.time_from[index]),
+            time_to: convertHoursToMinutes(req.body.time_to[index])
+        }
+    })
    
 
     try {
