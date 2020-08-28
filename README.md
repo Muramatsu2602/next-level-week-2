@@ -17,7 +17,7 @@ This bootcamp will be focused on the creation of an online teaching platform cal
 <!-- 
 ## The UI
 ...There shall be some nice interface pics here sometime in the future ... -->
-## Running this Project
+## Running the Application
 In order to run this project locally using Nodemon, use this command
 ```bash
 npm run dev
